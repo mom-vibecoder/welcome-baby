@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Jen, Colin &amp; Mika — A New Baby</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#2a3f72;
+    --navy-soft:#43568a;
+    --royal:#2c4fa3;
+    --royal-deep:#22407f;
+    --cream:#FBF6EC;
+    --cream-2:#F6EFE0;
+    --kraft:#cdb792;
+    --rule:rgba(42,63,114,0.16);
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --body:'EB Garamond',Georgia,serif;
+    --script:'Pinyon Script',cursive;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    font-family:var(--body);
+    color:var(--navy);
+    background-color:#ddcfb4;
+    background-image:
+      radial-gradient(120% 90% at 50% -10%, #efe4cd 0%, #e2d4b8 55%, #d6c6a4 100%);
+    min-height:100vh;
+    padding:clamp(14px,3vw,56px);
+  }
+  /* faint linen grain over the kraft */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .sheet{
+    position:relative;
+    z-index:1;
+    max-width:920px;
+    margin:0 auto;
+    background:var(--cream);
+    border-radius:5px;
+    box-shadow:0 28px 70px -28px rgba(54,40,20,.55), 0 6px 20px -10px rgba(54,40,20,.35);
+    overflow:hidden;
+  }
+  /* paper texture inside the card */
+  .sheet::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.32;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='0.6'/%3E%3C/svg%3E");
+  }
+  .sheet > *{position:relative;z-index:2;}
+
+  .pad{padding:0 clamp(22px,7vw,90px);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:clamp(54px,10vw,104px) clamp(22px,7vw,90px) clamp(40px,7vw,78px);
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero .eyebrow{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(17px,2.6vw,24px);
+    letter-spacing:.01em;
+    color:var(--navy);
+    margin:0 0 .15em;
+  }
+  .hero h1{
+    font-family:var(--script);
+    font-weight:400;
+    color:var(--royal);
+    font-size:clamp(96px,21vw,210px);
+    line-height:.9;
+    margin:.05em 0 .12em;
+    text-shadow:0 1px 0 rgba(44,79,163,.12);
+  }
+  .hero .subhead{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(19px,3.2vw,30px);
+    color:var(--navy);
+    margin:0 auto;
+    max-width:18ch;
+    line-height:1.3;
+  }
+
+  .bloom{position:absolute;display:block;overflow:visible;z-index:1;}
+  .hero .bloom{filter:drop-shadow(0 1px 1px rgba(80,60,30,.05));}
+
+  /* ---------- BODY SECTIONS ---------- */
+  .intro{
+    padding:clamp(8px,3vw,26px) clamp(22px,7vw,90px) clamp(30px,5vw,54px);
+    text-align:center;
+  }
+  .intro p{
+    font-family:var(--body);
+    font-size:clamp(17px,2.3vw,20px);
+    line-height:1.74;
+    color:#33406a;
+    max-width:60ch;
+    margin:0 auto 1.05em;
+    text-wrap:pretty;
+  }
+  .intro p:last-child{margin-bottom:0;}
+  .intro .lead-em{font-style:italic;color:var(--navy);}
+
+  /* recipient callout (up top so it can't be missed) */
+  .recipient{
+    padding:0 clamp(22px,7vw,90px);
+    margin-bottom:clamp(28px,4.5vw,46px);
+  }
+  .recipient .inner{
+    max-width:660px;margin:0 auto;
+    border:1px solid rgba(44,79,163,.3);
+    border-radius:18px;
+    background:var(--cream-2);
+    padding:clamp(16px,2.6vw,22px) clamp(22px,4vw,34px);
+    text-align:center;
+  }
+  .recipient .label{
+    font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--royal);margin:0 0 7px;
+  }
+  .recipient p.line{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(19px,3vw,25px);line-height:1.32;color:var(--navy);margin:0;
+  }
+  .recipient a{
+    color:var(--royal);text-decoration:none;
+    border-bottom:1px solid rgba(44,79,163,.45);
+    transition:border-color .22s;
+  }
+  .recipient a:hover{border-color:var(--royal);}
+
+  .divider{
+    display:flex;align-items:center;justify-content:center;gap:16px;
+    margin:0 auto;max-width:920px;padding:6px clamp(22px,7vw,90px);
+  }
+  .divider::before,.divider::after{content:"";height:1px;flex:1;background:var(--rule);}
+  .divider .dot{width:7px;height:7px;border-radius:50%;background:var(--royal);opacity:.6;}
+
+  .cat{padding:clamp(34px,6vw,60px) clamp(22px,7vw,90px) 0;}
+  .cat-head{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:8px;
+  }
+  .cat-head .bloom{position:static;flex:0 0 auto;align-self:center;}
+  .cat-head h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(30px,5vw,44px);
+    color:var(--navy);
+    margin:0;
+    line-height:1.06;
+  }
+  .cat-note{
+    font-family:var(--body);
+    font-style:italic;
+    font-size:clamp(15px,2vw,17px);
+    color:var(--navy-soft);
+    margin:0 0 22px;
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:16px;
+  }
+  .card{
+    display:flex;flex-direction:column;
+    background:linear-gradient(180deg,#FFFDF8,#FBF5E9);
+    border:1px solid var(--rule);
+    border-radius:14px;
+    padding:22px 24px;
+    transition:border-color .22s cubic-bezier(.22,1,.36,1), transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s;
+    text-decoration:none;
+    color:inherit;
+  }
+  .card:hover{
+    border-color:rgba(44,79,163,.45);
+    transform:translateY(-2px);
+    box-shadow:0 14px 26px -16px rgba(42,63,114,.4);
+  }
+  .card .name{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(21px,3vw,26px);
+    color:var(--navy);
+    line-height:1.1;
+    margin:0 0 5px;
+  }
+  .card .desc{
+    font-family:var(--body);
+    font-style:italic;
+    font-size:16px;
+    color:#52608a;
+    line-height:1.45;
+    margin:0 0 18px;
+    flex:1;
+  }
+  .card .go{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--body);
+    font-weight:500;
+    font-size:13px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--royal);
+  }
+  .card .go .arr{transition:transform .22s cubic-bezier(.22,1,.36,1);}
+  .card:hover .go .arr{transform:translateX(4px);}
+
+  /* ---------- CALL TO ACTION BLOCKS ---------- */
+  .blocks{
+    padding:clamp(40px,7vw,68px) clamp(22px,7vw,90px) 0;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:20px;
+  }
+  .block{
+    border:1px solid var(--rule);
+    border-radius:16px;
+    padding:clamp(26px,4vw,38px);
+    background:var(--cream-2);
+    display:flex;flex-direction:column;
+  }
+  .block .kicker{
+    font-family:var(--body);
+    font-weight:500;
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--royal);
+    margin:0 0 12px;
+  }
+  .block h3{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(24px,3.4vw,30px);
+    color:var(--navy);
+    line-height:1.12;
+    margin:0 0 12px;
+  }
+  .block p{
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.62;
+    color:#44507b;
+    margin:0 0 22px;
+    flex:1;
+  }
+  .btn{
+    align-self:flex-start;
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--body);
+    font-weight:500;
+    font-size:16px;
+    letter-spacing:.02em;
+    padding:13px 26px;
+    border-radius:999px;
+    text-decoration:none;
+    transition:background .22s, color .22s, transform .12s, opacity .22s;
+  }
+  .btn-solid{background:var(--royal);color:var(--cream);}
+  .btn-solid:hover{background:var(--royal-deep);}
+  .btn-solid:active{transform:translateY(1px);}
+  .btn-outline{background:transparent;color:var(--royal);border:1px solid var(--royal);}
+  .btn-outline:hover{background:rgba(44,79,163,.07);}
+  .soon{
+    font-family:var(--body);font-style:italic;font-size:14px;color:var(--navy-soft);
+    margin:12px 0 0;
+  }
+  .mono-email{font-style:normal;font-weight:500;color:var(--royal);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    margin-top:clamp(44px,7vw,72px);
+    padding:clamp(36px,6vw,56px) clamp(22px,7vw,90px) clamp(40px,6vw,60px);
+    text-align:center;
+    position:relative;
+  }
+  footer::before{content:"";position:absolute;top:0;left:clamp(22px,7vw,90px);right:clamp(22px,7vw,90px);height:1px;background:var(--rule);}
+  footer .sign{
+    font-family:var(--script);
+    font-size:clamp(40px,7vw,58px);
+    color:var(--royal);
+    line-height:1;
+    margin:0 0 10px;
+  }
+  footer .meta{
+    font-family:var(--body);
+    font-size:15px;
+    color:var(--navy-soft);
+    margin:0;
+  }
+  footer .fblooms{display:flex;justify-content:center;gap:14px;margin-top:22px;}
+  footer .fblooms .bloom{position:static;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:680px){
+    .cards{grid-template-columns:1fr;}
+    .blocks{grid-template-columns:1fr;}
+    .bloom.s-hide{display:none;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .card,.btn,.card .go .arr{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ FLORAL MOTIF DEFINITIONS ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- pink poppy -->
+    <symbol id="f-pink" viewBox="0 0 100 100">
+      <g>
+        <ellipse cx="50" cy="28" rx="13" ry="21" fill="#e79bb0" transform="rotate(0 50 50)"/>
+        <ellipse cx="50" cy="28" rx="13" ry="21" fill="#e79bb0" transform="rotate(72 50 50)"/>
+        <ellipse cx="50" cy="28" rx="13" ry="21" fill="#e79bb0" transform="rotate(144 50 50)"/>
+        <ellipse cx="50" cy="28" rx="13" ry="21" fill="#e79bb0" transform="rotate(216 50 50)"/>
+        <ellipse cx="50" cy="28" rx="13" ry="21" fill="#e79bb0" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="8.5" fill="#d27e95"/>
+      <circle cx="50" cy="50" r="3.4" fill="#3a4f86"/>
+    </symbol>
+    <!-- light pink small flower -->
+    <symbol id="f-pinklt" viewBox="0 0 100 100">
+      <g>
+        <ellipse cx="50" cy="33" rx="11" ry="17" fill="#f2c0cd" transform="rotate(0 50 50)"/>
+        <ellipse cx="50" cy="33" rx="11" ry="17" fill="#f2c0cd" transform="rotate(72 50 50)"/>
+        <ellipse cx="50" cy="33" rx="11" ry="17" fill="#f2c0cd" transform="rotate(144 50 50)"/>
+        <ellipse cx="50" cy="33" rx="11" ry="17" fill="#f2c0cd" transform="rotate(216 50 50)"/>
+        <ellipse cx="50" cy="33" rx="11" ry="17" fill="#f2c0cd" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="6.5" fill="#e79bb0"/>
+    </symbol>
+    <!-- blue single flower -->
+    <symbol id="f-bluedot" viewBox="0 0 100 100">
+      <g>
+        <circle cx="50" cy="32" r="13" fill="#6aa9d8" transform="rotate(0 50 50)"/>
+        <circle cx="50" cy="32" r="13" fill="#6aa9d8" transform="rotate(72 50 50)"/>
+        <circle cx="50" cy="32" r="13" fill="#6aa9d8" transform="rotate(144 50 50)"/>
+        <circle cx="50" cy="32" r="13" fill="#6aa9d8" transform="rotate(216 50 50)"/>
+        <circle cx="50" cy="32" r="13" fill="#6aa9d8" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="7" fill="#edc24d"/>
+    </symbol>
+    <!-- deep blue forget-me-not -->
+    <symbol id="f-blue" viewBox="0 0 100 100">
+      <g>
+        <circle cx="50" cy="34" r="11" fill="#3f6cc0" transform="rotate(0 50 50)"/>
+        <circle cx="50" cy="34" r="11" fill="#3f6cc0" transform="rotate(72 50 50)"/>
+        <circle cx="50" cy="34" r="11" fill="#3f6cc0" transform="rotate(144 50 50)"/>
+        <circle cx="50" cy="34" r="11" fill="#3f6cc0" transform="rotate(216 50 50)"/>
+        <circle cx="50" cy="34" r="11" fill="#3f6cc0" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="6" fill="#f3d873"/>
+    </symbol>
+    <!-- orange small flower -->
+    <symbol id="f-orange" viewBox="0 0 100 100">
+      <g>
+        <ellipse cx="50" cy="34" rx="10" ry="15" fill="#e2924a" transform="rotate(0 50 50)"/>
+        <ellipse cx="50" cy="34" rx="10" ry="15" fill="#e2924a" transform="rotate(72 50 50)"/>
+        <ellipse cx="50" cy="34" rx="10" ry="15" fill="#e2924a" transform="rotate(144 50 50)"/>
+        <ellipse cx="50" cy="34" rx="10" ry="15" fill="#e2924a" transform="rotate(216 50 50)"/>
+        <ellipse cx="50" cy="34" rx="10" ry="15" fill="#e2924a" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="6" fill="#b5651f"/>
+    </symbol>
+    <!-- tiny yellow flower -->
+    <symbol id="f-yellow" viewBox="0 0 100 100">
+      <g>
+        <circle cx="50" cy="36" r="10" fill="#edc24d" transform="rotate(0 50 50)"/>
+        <circle cx="50" cy="36" r="10" fill="#edc24d" transform="rotate(72 50 50)"/>
+        <circle cx="50" cy="36" r="10" fill="#edc24d" transform="rotate(144 50 50)"/>
+        <circle cx="50" cy="36" r="10" fill="#edc24d" transform="rotate(216 50 50)"/>
+        <circle cx="50" cy="36" r="10" fill="#edc24d" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="5.5" fill="#d99a2e"/>
+    </symbol>
+    <!-- green leaf sprig -->
+    <symbol id="s-leaf" viewBox="0 0 100 100">
+      <path d="M50 96 C49 72 50 46 50 10" stroke="#5f8c46" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      <ellipse cx="64" cy="74" rx="6.5" ry="12" fill="#6f9a52" transform="rotate(38 64 74)"/>
+      <ellipse cx="36" cy="60" rx="6.5" ry="12" fill="#6f9a52" transform="rotate(-38 36 60)"/>
+      <ellipse cx="63" cy="46" rx="6" ry="11" fill="#7aa75c" transform="rotate(34 63 46)"/>
+      <ellipse cx="38" cy="32" rx="5.5" ry="10" fill="#7aa75c" transform="rotate(-34 38 32)"/>
+      <ellipse cx="50" cy="16" rx="5" ry="9" fill="#84b063"/>
+    </symbol>
+    <!-- smaller sprig -->
+    <symbol id="s-leaf2" viewBox="0 0 100 100">
+      <path d="M50 94 C50 70 50 48 50 24" stroke="#6f9a52" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="62" cy="62" rx="6" ry="11" fill="#84a85e" transform="rotate(40 62 62)"/>
+      <ellipse cx="38" cy="48" rx="6" ry="11" fill="#84a85e" transform="rotate(-40 38 48)"/>
+      <ellipse cx="50" cy="28" rx="5" ry="9" fill="#92b56b"/>
+    </symbol>
+    <!-- red berry sprig -->
+    <symbol id="b-red" viewBox="0 0 100 100">
+      <path d="M50 94 C50 70 50 50 50 30" stroke="#5f8c46" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M50 56 C60 50 66 42 68 30" stroke="#5f8c46" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M50 64 C40 58 35 50 33 40" stroke="#5f8c46" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="68" cy="27" r="6" fill="#d4452c"/>
+      <circle cx="32" cy="37" r="6" fill="#d4452c"/>
+      <circle cx="50" cy="26" r="6.5" fill="#e0533a"/>
+    </symbol>
+    <!-- blue berry cluster -->
+    <symbol id="b-blue" viewBox="0 0 100 100">
+      <path d="M50 92 C50 72 48 56 50 40" stroke="#5f8c46" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M50 60 C58 54 62 48 64 40" stroke="#5f8c46" stroke-width="1.6" fill="none"/>
+      <path d="M50 68 C42 62 38 56 36 48" stroke="#5f8c46" stroke-width="1.6" fill="none"/>
+      <circle cx="64" cy="37" r="5.5" fill="#3a5aa8"/>
+      <circle cx="36" cy="45" r="5.5" fill="#3a5aa8"/>
+      <circle cx="50" cy="34" r="6" fill="#2b3f78"/>
+      <circle cx="58" cy="26" r="5" fill="#4a6abc"/>
+      <circle cx="42" cy="28" r="5" fill="#4a6abc"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main class="sheet">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <!-- scattered blooms -->
+    <svg class="bloom" style="top:3%;left:5%;width:60px;height:60px;transform:rotate(-8deg)" viewBox="0 0 100 100"><use href="#s-leaf"/></svg>
+    <svg class="bloom s-hide" style="top:2%;left:19%;width:42px;height:42px;transform:rotate(10deg)" viewBox="0 0 100 100"><use href="#b-blue"/></svg>
+    <svg class="bloom" style="top:6%;left:32%;width:34px;height:34px;transform:rotate(-15deg)" viewBox="0 0 100 100"><use href="#f-bluedot"/></svg>
+    <svg class="bloom s-hide" style="top:1%;left:49%;width:44px;height:44px;transform:rotate(6deg)" viewBox="0 0 100 100"><use href="#f-pink"/></svg>
+    <svg class="bloom" style="top:5%;left:63%;width:42px;height:42px;transform:rotate(20deg)" viewBox="0 0 100 100"><use href="#s-leaf2"/></svg>
+    <svg class="bloom s-hide" style="top:3%;left:78%;width:32px;height:32px;transform:rotate(-10deg)" viewBox="0 0 100 100"><use href="#f-blue"/></svg>
+    <svg class="bloom" style="top:7%;left:90%;width:38px;height:38px;transform:rotate(12deg)" viewBox="0 0 100 100"><use href="#b-red"/></svg>
+
+    <svg class="bloom" style="top:21%;left:4%;width:40px;height:40px;transform:rotate(-20deg)" viewBox="0 0 100 100"><use href="#f-pinklt"/></svg>
+    <svg class="bloom s-hide" style="top:30%;left:11%;width:34px;height:34px;transform:rotate(8deg)" viewBox="0 0 100 100"><use href="#f-blue"/></svg>
+    <svg class="bloom s-hide" style="top:35%;left:17%;width:22px;height:22px;transform:rotate(-12deg)" viewBox="0 0 100 100"><use href="#f-bluedot"/></svg>
+    <svg class="bloom" style="top:22%;left:87%;width:46px;height:46px;transform:rotate(15deg)" viewBox="0 0 100 100"><use href="#f-pink"/></svg>
+    <svg class="bloom" style="top:31%;left:79%;width:50px;height:50px;transform:rotate(-6deg)" viewBox="0 0 100 100"><use href="#s-leaf"/></svg>
+    <svg class="bloom s-hide" style="top:42%;left:7%;width:32px;height:32px;transform:rotate(4deg)" viewBox="0 0 100 100"><use href="#b-blue"/></svg>
+    <svg class="bloom s-hide" style="top:45%;left:90%;width:30px;height:30px;transform:rotate(10deg)" viewBox="0 0 100 100"><use href="#f-orange"/></svg>
+
+    <svg class="bloom" style="top:56%;left:5%;width:44px;height:44px;transform:rotate(14deg)" viewBox="0 0 100 100"><use href="#s-leaf2"/></svg>
+    <svg class="bloom" style="top:55%;left:14%;width:38px;height:38px;transform:rotate(-10deg)" viewBox="0 0 100 100"><use href="#f-pink"/></svg>
+    <svg class="bloom" style="top:55%;left:84%;width:36px;height:36px;transform:rotate(-8deg)" viewBox="0 0 100 100"><use href="#b-blue"/></svg>
+    <svg class="bloom s-hide" style="top:62%;left:92%;width:34px;height:34px;transform:rotate(18deg)" viewBox="0 0 100 100"><use href="#f-pinklt"/></svg>
+
+    <svg class="bloom s-hide" style="top:74%;left:7%;width:24px;height:24px;transform:rotate(0deg)" viewBox="0 0 100 100"><use href="#f-yellow"/></svg>
+    <svg class="bloom" style="top:76%;left:20%;width:30px;height:30px;transform:rotate(-14deg)" viewBox="0 0 100 100"><use href="#f-bluedot"/></svg>
+    <svg class="bloom s-hide" style="top:82%;left:38%;width:42px;height:42px;transform:rotate(8deg)" viewBox="0 0 100 100"><use href="#f-pink"/></svg>
+    <svg class="bloom" style="top:84%;left:58%;width:50px;height:50px;transform:rotate(-12deg)" viewBox="0 0 100 100"><use href="#s-leaf"/></svg>
+    <svg class="bloom s-hide" style="top:78%;left:72%;width:34px;height:34px;transform:rotate(10deg)" viewBox="0 0 100 100"><use href="#b-red"/></svg>
+    <svg class="bloom" style="top:84%;left:88%;width:30px;height:30px;transform:rotate(16deg)" viewBox="0 0 100 100"><use href="#f-blue"/></svg>
+
+    <p class="eyebrow">Jen, Colin &amp; Mika are having a</p>
+    <h1>Baby</h1>
+    <p class="subhead">Join us in taking care of them for these first few weeks.</p>
+  </section>
+
+  <!-- ============ INTRO ============ -->
+  <section class="intro">
+    <p>We are so thankful for this family — and we want to show up for them as they welcome their newest little one into the world.</p>
+    <p>The first few weeks are tender and tiring. A warm meal, a good cup of coffee, an hour to rest — small things that quietly say <span class="lead-em">we've got you</span>. Below are gift cards to take a few things off their plate, gathered by what would help most.</p>
+  </section>
+
+  <!-- ============ RECIPIENT NOTE (top) ============ -->
+  <section class="recipient">
+    <div class="inner">
+      <p class="label">One quick note</p>
+      <p class="line">Please send all gift cards to Jen as the recipient — <a href="mailto:jenszeto@me.com?subject=A%20gift%20card%20for%20Jen%2C%20Colin%20%26%20Mika">jenszeto@me.com</a></p>
+    </div>
+  </section>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ============ FOOD ============ -->
+  <section class="cat">
+    <div class="cat-head">
+      <svg class="bloom" style="width:34px;height:34px" viewBox="0 0 100 100"><use href="#f-pink"/></svg>
+      <h2>Food</h2>
+    </div>
+    <p class="cat-note">A good dinner, handled. Local kitchens they love.</p>
+    <div class="cards">
+      <a class="card" href="https://squareup.com/gift/MLW4ZJ8G8TY8G/order" target="_blank" rel="noopener">
+        <p class="name">Cloud Sushi</p>
+        <p class="desc">Sushi for an easy, no-cook night in.</p>
+        <span class="go">Send a gift card <span class="arr">&rarr;</span></span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/egiftcards/tangerine-bistro-10412-donner-pass-road" target="_blank" rel="noopener">
+        <p class="name">Tangerine Bistro</p>
+        <p class="desc">Comfort breakfast and lunch on Donner Pass.</p>
+        <span class="go">Send a gift card <span class="arr">&rarr;</span></span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/egiftcards/greatgold" target="_blank" rel="noopener">
+        <p class="name">Great Gold</p>
+        <p class="desc">A proper dinner for nights cooking just won't happen.</p>
+        <span class="go">Send a gift card <span class="arr">&rarr;</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ COFFEE ============ -->
+  <section class="cat">
+    <div class="cat-head">
+      <svg class="bloom" style="width:34px;height:34px" viewBox="0 0 100 100"><use href="#f-orange"/></svg>
+      <h2>Coffee &amp; bakery</h2>
+    </div>
+    <p class="cat-note">Fuel for the 3am feeds and the slow mornings after.</p>
+    <div class="cards">
+      <a class="card" href="https://order.toasttab.com/egiftcards/perenn-bakery-online" target="_blank" rel="noopener">
+        <p class="name">Perenn Bakery</p>
+        <p class="desc">Morning pastries and a warm latte.</p>
+        <span class="go">Send a gift card <span class="arr">&rarr;</span></span>
+      </a>
+      <a class="card" href="https://www.wildcherriescoffeehouse.com/gift-cards.html" target="_blank" rel="noopener">
+        <p class="name">Wild Cherries Coffeehouse</p>
+        <p class="desc">The neighborhood pick-me-up.</p>
+        <span class="go">Send a gift card <span class="arr">&rarr;</span></span>
+      </a>
+      <a class="card" href="https://coffeebar.com/shop/?e-filter-dbdc3cb-product_cat=giftcard" target="_blank" rel="noopener">
+        <p class="name">Coffee Bar</p>
+        <p class="desc">Locally roasted coffee to get through the day.</p>
+        <span class="go">Send a gift card <span class="arr">&rarr;</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ WELLNESS ============ -->
+  <section class="cat">
+    <div class="cat-head">
+      <svg class="bloom" style="width:34px;height:34px" viewBox="0 0 100 100"><use href="#f-bluedot"/></svg>
+      <h2>Wellness</h2>
+    </div>
+    <p class="cat-note">An hour of rest for tired shoulders and minds.</p>
+    <div class="cards">
+      <a class="card" href="https://go.booker.com/location/MartisValleyMassage/buy/gift-certificate" target="_blank" rel="noopener">
+        <p class="name">Martis Valley Massage</p>
+        <p class="desc">A massage to ease the new-parent ache.</p>
+        <span class="go">Send a gift card <span class="arr">&rarr;</span></span>
+      </a>
+      <a class="card" href="https://www.zenergytahoe.com/" target="_blank" rel="noopener">
+        <p class="name">Zenergy</p>
+        <p class="desc">Spa time and a quiet reset.</p>
+        <span class="go">Send a gift card <span class="arr">&rarr;</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ PERSONAL CHEF ============ -->
+  <section class="cat">
+    <div class="cat-head">
+      <svg class="bloom" style="width:34px;height:34px" viewBox="0 0 100 100"><use href="#b-red"/></svg>
+      <h2>A chef at home</h2>
+    </div>
+    <p class="cat-note">Prefer to gift a home-cooked meal? Reach out to a local chef or caterer.</p>
+    <div class="cards">
+      <a class="card" href="https://truckeechef.com" target="_blank" rel="noopener">
+        <p class="name">Truckee Chef</p>
+        <p class="desc">A private chef for a meal made at home.</p>
+        <span class="go">Visit &amp; inquire <span class="arr">&rarr;</span></span>
+      </a>
+      <a class="card" href="https://theseasonedsage.com" target="_blank" rel="noopener">
+        <p class="name">The Seasoned Sage</p>
+        <p class="desc">Catering and meals made with care.</p>
+        <span class="go">Visit &amp; inquire <span class="arr">&rarr;</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ MEAL TRAIN + EMAIL ============ -->
+  <section class="blocks">
+    <div class="block">
+      <p class="kicker">In town?</p>
+      <h3>Bring them a meal.</h3>
+      <p>If you're local to Truckee and would love to cook or drop something off, join the meal train and pick a date that works for you.</p>
+      <!-- MEAL TRAIN: replace href="#" with the Meal Train URL when ready -->
+      <a class="btn btn-solid" href="#" target="_blank" rel="noopener">Join the meal train &rarr;</a>
+      <p class="soon">Link coming soon — check back shortly.</p>
+    </div>
+    <div class="block">
+      <p class="kicker">Sending a gift card?</p>
+      <h3>Have it delivered here.</h3>
+      <p>For any digital gift card above, send it to the address below and we'll make sure it reaches the family.</p>
+      <a class="btn btn-outline" href="mailto:jenszeto@me.com?subject=A%20gift%20card%20for%20Jen%2C%20Colin%20%26%20Mika">Email <span class="mono-email">jenszeto@me.com</span></a>
+      <p class="soon">Tip: in the gift-card checkout, enter <span class="mono-email">jenszeto@me.com</span> as the recipient.</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <p class="sign">With love</p>
+    <p class="meta">For Jen, Colin &amp; Mika — Truckee, California</p>
+    <div class="fblooms">
+      <svg class="bloom" style="width:30px;height:30px;transform:rotate(-10deg)" viewBox="0 0 100 100"><use href="#f-pink"/></svg>
+      <svg class="bloom" style="width:26px;height:26px;transform:rotate(6deg)" viewBox="0 0 100 100"><use href="#f-blue"/></svg>
+      <svg class="bloom" style="width:30px;height:30px;transform:rotate(12deg)" viewBox="0 0 100 100"><use href="#s-leaf2"/></svg>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
